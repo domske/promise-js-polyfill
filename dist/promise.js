@@ -1,1 +1,8 @@
+/**
+ * Javascript Promise Polyfill
+ *
+ * @author Dominik Geng
+ * @copyright (C) 2018 Dominik Geng
+ * @license Apache-2.0
+ */
 !function(t){if(!t.Promise){var e="fulfilled",o="rejected",i=function(t){if("function"!=typeof t)throw TypeError("Promise argument is not a function");this.onResolved=void 0,this.onRejected=void 0,this.onFinally=void 0,this.value=void 0,this.reason=void 0;var n=this;t.call(void 0,function(t){n.state!=e&&(n.value=t,n.state=e,n.onResolved&&n.onResolved(t),n.onFinally&&n.onFinally())},function(t){n.state!=o&&(n.reason=t,n.state=o,n.onRejected&&n.onRejected(t),n.onFinally&&n.onFinally())})};i.prototype={constructor:i,state:"pending",then:function(t,n){return this.onResolved=t,this.onRejected=n,this.state==e?this.onResolved(this.value):this.state==o&&this.onRejected(this.reason),this},catch:function(t){return this.onRejected=t,this.state==o&&this.onRejected(this.reason),this},finally:function(t){return this.onFinally=t,this.state!=e&&this.state!=o||this.onFinally(),this},toString:function(){return"[object Promise]"}},i.length=1,i.resolve=function(e){return e instanceof i?e:new i(function(t,n){t(e)})},i.reject=function(e){return new i(function(t,n){n(e)})},i.all=function(n){if(!Array.isArray(n))throw TypeError("Argument is not an array.");return new i(function(t,e){var o=[],i=n.length,r=function(){i<=0&&t(o)};n.forEach(function(t,n){t&&"function"==typeof t.then?t.then(function(t){o[n]=t,i--,r()},e):(o[n]=t,i--)}),r()})},i.race=function(t){if(!Array.isArray(t))throw TypeError("Argument is not an array.");return new i(function(n,e){t.forEach(function(t){t&&"function"==typeof t.then?t.then(n,e):n(t)})})},t.Promise=i}}(this);
