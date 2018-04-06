@@ -1,8 +1,8 @@
 # Promise
 ## Simple Promise JavaScript Polyfill
 
-Just another promise polyfill for javascript.
-Optimized for embedded systems. But usable everywhere, probably.
+A simple lightweight polyfill for javascript.
+Optimized for embedded systems. But usable everywhere. (probably)
 
 ### Description
 This is a simple polyfill for the ES6 feature [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
